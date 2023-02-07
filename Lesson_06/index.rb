@@ -11,10 +11,11 @@ current_time = Time.now.strftime("%Y-%m-%d_%H:%M:%S")
 
 filename = "QUIZ_#{username}_#{current_time}.txt"
 
+# протокол
 File.write(
     filename, 
     "Результаты для пользователя #{username}.\n\n#{current_time}", 
-    mode: "a"
+    mode: "a" # Открыть для записи и дописывать контент в конец файла!
 )
 
 # Откуда-то взять вопросы и ответы
@@ -26,7 +27,15 @@ all_questions = YAML.safe_load_file("quetion.yml", symbolize_names: true) #чи�
 # Брать каждый вопрос по очереди и предлагать 4 варинта ответа
 
 all_questions.shuffle.each do |question_data|
-    puts "\n\n=== #{question_data[:question]} ===\n\n"
+    formatted_question = "\n\n=== #{question_data[:question]} ===\n\n"
+    puts formatted_question 
+
+    # протокол
+    File.write(
+        filename, 
+        formatted_question, 
+        mode: "a" # Открыть для записи и дописывать контент в конец файла!
+    )
 
     # тут хранится не буква, а полный ответ
     correct_answer = question_data[:answers].first
@@ -59,19 +68,52 @@ all_questions.shuffle.each do |question_data|
         end
     end
 
+    File.write(
+        filename, 
+        "Ответ пользователя #{answers[user_answer_char]}\n\n", 
+        mode: "a" # Открыть для записи и дописывать контент в конец файла!
+    )
+
     # Мы сравниваем ответ с правильным
     if answers[user_answer_char] == correct_answer
         puts "Верно!"
         correct_answers = correct_answers + 1
+
+        File.write(
+            filename, 
+            "Верно!", 
+            mode: "a" # Открыть для записи и дописывать контент в конец файла!
+        )
     else 
         puts "Неверно!"
         puts "Правильный ответ - #{correct_answer}."
         incorrect_answers = incorrect_answers + 1
+
+        File.write(
+            filename, 
+            "Неверно! Правильный ответ - #{correct_answer}.", 
+            mode: "a" # Открыть для записи и дописывать контент в конец файла!
+        )
     end
 end
 
+File.write(
+    filename, 
+    "\n\nПравильных ответов: #{correct_answers}", 
+    mode: "a" # Открыть для записи и дописывать контент в конец файла!
+)
 
+File.write(
+    filename, 
+    "\n\nНеправильных ответов: #{incorrect_answers}", 
+    mode: "a" # Открыть для записи и дописывать контент в конец файла!
+)
 
+correct_answer_percentage = (correct_answers / all_questions.length.to_f) * 100
 
+File.write(
+    filename, 
+    "\n\nПроцент правильных ответов: #{correct_answer_percentage.floor()} %", 
+    mode: "a" # Открыть для записи и дописывать контент в конец файла!
+)
 
-    # Мы сравниваем ответ с клавиатуры
