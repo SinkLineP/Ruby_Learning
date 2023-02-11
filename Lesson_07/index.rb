@@ -28,13 +28,13 @@ class Animal
         end
     end
 
-    def new_age(age)
-        @age = age
+    def age=(new_age)
+        @age = new_age
     end
 
-    def birthday 
-        @age = @age + 1
-    end
+    # def birthday 
+    #     @age = @age + 1
+    # end
 
     def between?
         puts "Hi!"
@@ -46,11 +46,25 @@ animal1 = Animal.new("Kotopes", 3) # создаём новое животное 
 animal2 = Animal.new("Pesokot", 1)
 animal3 = Animal.new("Mousekot", 5)
 
+
+
+
+
+
+
+
+
+
+
+# animal1.age
+# animal1.age = 4
+# animal1.age
+
 # animal1.new_age(4)
 
-animal1.age
-animal1.birthday
-animal1.age
+# animal1.age
+# animal1.birthday
+# animal1.age
 
 
 # animal1.age
