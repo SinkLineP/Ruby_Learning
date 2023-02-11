@@ -5,6 +5,7 @@
 # кличка
 
 class Animal
+    @@my_class_var = "test"
     # Тело класса
     # Тут мы описываем какие атрибуты есть у животных
     # и ещё, какие методы (функции) они могут реализовать 
@@ -18,12 +19,52 @@ class Animal
     end
 
     def age # это метод
-        puts "Мне #{@age} лет"
+        if @age > 1 && @age < 5
+            puts "Мне #{@age} года"
+        elsif @age == 1
+            puts "Мне #{@age} год"
+        else 
+            puts "Мне #{@age} лет"
+        end
+    end
+
+    def new_age(age)
+        @age = age
+    end
+
+    def birthday 
+        @age = @age + 1
+    end
+
+    def between?
+        puts "Hi!"
     end
 end
 
 # Порождаем образец (экземпляр) этого класса
 animal1 = Animal.new("Kotopes", 3) # создаём новое животное и запускаем метод initialize
-animal2 = Animal.new("Pesokot", 2)
+animal2 = Animal.new("Pesokot", 1)
+animal3 = Animal.new("Mousekot", 5)
 
-puts animal1.age
+# animal1.new_age(4)
+
+animal1.age
+animal1.birthday
+animal1.age
+
+
+# animal1.age
+# animal2.age
+# animal3.age
+
+# puts animal1.between?
+
+# # monkey-patching
+# class String
+#     #переоткрываем уже существующий
+#     def downcase
+#         puts "lol"
+#     end
+# end
+
+
