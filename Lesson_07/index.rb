@@ -18,14 +18,20 @@ class Animal
         @age = age
     end
 
-    def age # это метод
-        if @age > 1 && @age < 5
-            puts "Мне #{@age} года"
-        elsif @age == 1
-            puts "Мне #{@age} год"
-        else 
-            puts "Мне #{@age} лет"
-        end
+    # def age # это метод
+    #     if @age > 1 && @age < 5
+    #         puts "Мне #{@age} года"
+    #     elsif @age == 1
+    #         puts "Мне #{@age} год"
+    #     else 
+    #         puts "Мне #{@age} лет"
+    #     end
+    # end
+
+    def age 
+        # Вернуть переменную age
+        return @age
+        # после return не выдводятся данные
     end
 
     def age=(new_age)
@@ -36,8 +42,12 @@ class Animal
     #     @age = @age + 1
     # end
 
-    def between?
+    def between? # ожидают возвращает true иди false
         puts "Hi!"
+    end
+
+    def this_is_method
+
     end
 end
 
@@ -47,7 +57,8 @@ animal2 = Animal.new("Pesokot", 1)
 animal3 = Animal.new("Mousekot", 5)
 
 
-
+animal1_age = animal1.age
+puts "Возраст животного номер 1: #{animal1_age}"
 
 
 
