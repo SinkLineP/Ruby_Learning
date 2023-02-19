@@ -10,3 +10,5 @@ class Animal
 end
 
 animal1 = Animal.new("Kotopes", 3) # создаем новое животное и запускаем метод initialize
+
+
