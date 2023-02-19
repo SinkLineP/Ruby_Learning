@@ -1,8 +1,9 @@
 require 'yaml'
 
 class FileWriter
-    def initialize(filename, mode)
-        @filename = filename
+    def initialize(mode)
+        current_time = Time.now.strftime("%Y-%m-%d_%H:%M:%S")
+        @filename = "QUIZ_#{username}_#{current_time}.txt"
         @mode = mode
     end
 
@@ -32,12 +33,10 @@ incorrect_answers = 0
 # Ввести имя с клавиатуры
 print "Enter your name: "
 username = gets.strip
-current_time = Time.now.strftime("%Y-%m-%d_%H:%M:%S")
-
-filename = "QUIZ_#{username}_#{current_time}.txt"
 
 
-writer = FileWriter.new(filename, "a")
+
+writer = FileWriter.new("a")
 writer.write("Результаты для пользователя #{username}.\n\n#{current_time}")
 
 questions = Questions.new("quetion.yml")
