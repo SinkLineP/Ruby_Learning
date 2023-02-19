@@ -95,3 +95,9 @@ questions.load.shuffle.each do |question_data|
         writer.write("Неверно! Правильный ответ - #{correct_answer}.")
     end
 end
+
+writer.write("\n\nПравильных ответов: #{correct_answers}")
+writer.write("\n\nНеправильных ответов: #{incorrect_answers}")
+
+correct_answer_percentage = (correct_answers / all_questions.length.to_f) * 100
+writer.write("\n\nПроцент правильных ответов: #{correct_answer_percentage.floor()} %")
